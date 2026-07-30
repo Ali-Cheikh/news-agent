@@ -16,7 +16,7 @@ const CONFIG = {
   MAX_RETRIES:       3,
   MIN_STORIES:       3,
   MAX_STORIES:       10,
-  EMAIL_FROM:        "Commodities Brief <commodities-news@tccards.tn",
+  EMAIL_FROM:        "contact@tccards.tn",
   IMPACT_VERBS:      "Pushes / Signals / Drives / Supports / Pressures / Lifts / Weighs on",
 
   FEEDS: [

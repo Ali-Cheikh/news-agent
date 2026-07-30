@@ -16,7 +16,7 @@ const CONFIG = {
   MAX_RETRIES:       3,
   MIN_STORIES:       3,
   MAX_STORIES:       10,
-  EMAIL_FROM:        "Health Brief <health-news@tccards.tn",
+  EMAIL_FROM:        "contact@tccards.tn",
   IMPACT_VERBS:      "Expands / Approves / Reduces / Covers / Improves / Affects / Enables / Restricts",
 
   FEEDS: [

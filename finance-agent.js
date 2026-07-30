@@ -16,7 +16,7 @@ const CONFIG = {
   MAX_RETRIES:       3,
   MIN_STORIES:       3,
   MAX_STORIES:       10,
-  EMAIL_FROM:        "Finance Brief <finance-news@tccards.tn",
+  EMAIL_FROM:        "contact@tccards.tn",
   IMPACT_VERBS:      "Moves / Signals / Pushes / Cuts / Raises / Affects / Shifts",
 
   FEEDS: [

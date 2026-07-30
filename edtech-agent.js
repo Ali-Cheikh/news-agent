@@ -16,7 +16,7 @@ const CONFIG = {
   MAX_RETRIES:       3,
   MIN_STORIES:       3,
   MAX_STORIES:       10,
-  EMAIL_FROM:        "EdTech Brief <edtech-news@tccards.tn",
+  EMAIL_FROM:        "contact@tccards.tn",
   IMPACT_VERBS:      "Lets students / Helps teachers / Gives learners / Brings / Enables / Reduces / Expands",
 
   FEEDS: [

@@ -13,13 +13,13 @@ const CONFIG = {
   THEME_COLOR:       "#22d3ee",
   DIGEST_DIR:        "digests/tech",
   TIME_WINDOW_HOURS: 24,
-  ITEMS_PER_FEED:    5,
-  SNIPPET_LENGTH:    150,
+  ITEMS_PER_FEED:    10,
+  SNIPPET_LENGTH:    400,
   MODEL:             "gemini-2.5-flash",
   MAX_RETRIES:       3,
   MIN_STORIES:       3,
-  MAX_STORIES:       10,
-  EMAIL_FROM:        "Tech Digest news@tccards.tn",
+  MAX_STORIES:       15,
+  EMAIL_FROM:        "contact@tccards.tn",
   IMPACT_VERBS:      "Lets / Makes / Gives / Cuts / Adds / Brings",
 
   FEEDS: [
