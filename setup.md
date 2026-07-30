@@ -1,6 +1,5 @@
-
-// ─────────────────────────────────────────────────────────────────
-"Setup": `REPO STRUCTURE (create these files exactly)
+──────────────────────────────────────────────────────────
+"Setup": `REPO STRUCTURE
 ══════════════════════════════════════════
 
 your-repo/
@@ -19,6 +18,7 @@ STEP 1 — Create the repo
 
 STEP 2 — Add your Gemini API key
   → aistudio.google.com → Get API key (free, no card)
+  → resend email api key → setup domain → create key
   → GitHub repo → Settings → Secrets → Actions → New secret
   ┌─────────────────┬─────────────────────────────────┐
   │ GEMINI_API_KEY  │  AIza...  (required)             │

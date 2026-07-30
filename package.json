@@ -1,18 +1,24 @@
 {
-  "name": "tech-digest-bot",
+  "name": "agent-suite",
   "version": "1.0.0",
-  "description": "Daily consumer tech digest · Gemini 2.5 Flash + RSS + GitHub Actions",
-  "private": true,
+  "description": "Multi-agent RSS digest system with Gemini AI",
+  "main": "core.js",
   "scripts": {
-    "start": "node index.js",
-    "test":  "node index.js"
+    "tech": "node index.js",
+    "finance": "node finance-agent.js",
+    "gold": "node gold-agent.js",
+    "health": "node health-agent.js",
+    "edtech": "node edtech-agent.js",
+    "all": "node index.js && node finance-agent.js && node gold-agent.js && node health-agent.js && node edtech-agent.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "resend":                "^3.2.0",
-    "rss-parser":            "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "resend": "^4.0.0",
+    "dotenv": "^16.4.5"
   },
   "engines": {
-    "node": ">=20"
-  }
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
 }
