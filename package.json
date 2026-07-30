@@ -1,0 +1,18 @@
+{
+  "name": "tech-digest-bot",
+  "version": "1.0.0",
+  "description": "Daily consumer tech digest · Gemini 2.5 Flash + RSS + GitHub Actions",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "test":  "node index.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "resend":                "^3.2.0",
+    "rss-parser":            "^3.13.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
