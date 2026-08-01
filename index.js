@@ -19,7 +19,7 @@ const CONFIG = {
   MAX_RETRIES:       3,
   MIN_STORIES:       10,
   MAX_STORIES:       15,
-  EMAIL_FROM:        "contact@tccards.tn"
+  EMAIL_FROM:        "contact@tccards.tn",
   IMPACT_VERBS:      "Lets / Makes / Gives / Cuts / Adds / Brings / Signals / Shifts",
 
   // ─── FEEDS (International) ──────────────────────────────
