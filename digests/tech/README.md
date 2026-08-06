@@ -6,3 +6,4 @@
 - [Monday, August 3, 2026](./2026-08-03.md) — 7 stories
 - [Tuesday, August 4, 2026](./2026-08-04.md) — 15 stories
 - [Wednesday, August 5, 2026](./2026-08-05.md) — 15 stories
+- [Thursday, August 6, 2026](./2026-08-06.md) — 15 stories
