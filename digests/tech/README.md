@@ -12,3 +12,4 @@
 - [Sunday, August 9, 2026](./2026-08-09.md) — 9 stories
 - [Monday, August 10, 2026](./2026-08-10.md) — 11 stories
 - [Wednesday, August 12, 2026](./2026-08-12.md) — 15 stories
+- [Friday, August 14, 2026](./2026-08-14.md) — 15 stories
