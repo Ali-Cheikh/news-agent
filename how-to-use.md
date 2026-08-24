@@ -1,10 +1,13 @@
+<img src="/assets/Tnosey-confused.png" align="right" />
+
 # How to Activate Nosey
+This doc holds how you configure **Nosey**
+Step by step through setting up and running your own digest agents — _locally or on GitHub Actions_.
+All you need is just a bit of curiosity.
 
-Nosey is your nosy little AI that digs through RSS feeds so you don't have to.  
-This guide walks you through setting up and running your own digest agents — locally or on GitHub Actions.  
-No advanced coding required — just a bit of curiosity.
+You'll point your nosey agent at a few **RSS** feeds, tell it which words to ignore, give it a ranked list of what matters, and it will fetch, deduplicate, and deliver a tidy digest. Want a specific accent color in the email? Set it. Only care about the **last 48 hours**? Done. Prefer 10 to 15 stories per day? That's just a couple of fields.
 
----
+All of it lives in one simple config object inside each agent file. Tweak a few values and your nosey agent is ready to go.
 
 ## Prerequisites
 
@@ -71,7 +74,80 @@ No advanced coding required — just a bit of curiosity.
    - After ~1 minute, a new `digests/tech/` folder appears with today's `.md` file.
    - The workflow commits the digest back to the repo.
 
-The workflow runs daily at 08:00 UTC by default — you can change that later.
+The workflow is scheduled to run daily at 08:00 UTC by default. But you can change that easily — see the next section.
+
+---
+
+## The Workflow File and Cron Schedule
+
+The automation lives in `.github/workflows/daily-digest.yml`. This is the file that tells GitHub when to wake up Nosey and what to do.
+
+Here's the full default workflow:
+
+```yaml
+name: Daily Tech Digest
+
+on:
+  schedule:
+    - cron: '59 5 * * *'      # 5:59 UTC every day
+  workflow_dispatch:          # allows manual trigger from GitHub UI
+
+permissions:
+  contents: write            # needed to commit the digest files
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Run digest
+        run: node index.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_TO:       ${{ secrets.EMAIL_TO }}
+
+      - name: Commit to repo
+        run: |
+          git config user.name  "digest-bot[bot]"
+          git config user.email "digest-bot@noreply.github.com"
+          git add digests/
+          git diff --cached --quiet || (
+            git commit -m "digest: $(date +%Y-%m-%d) [skip ci]" &&
+            git push
+          )
+```
+
+### Changing the Schedule
+
+The `cron` line controls when the workflow runs. The syntax is:
+
+```
+┌───────── minute (0–59)
+│ ┌───────── hour (0–23)
+│ │ ┌───────── day of month (1–31)
+│ │ │ ┌───────── month (1–12)
+│ │ │ │ ┌───────── day of week (0–6, Sunday=0)
+│ │ │ │ │
+* * * * *
+```
+
+Examples:
+
+- `'0 8 * * *'` → every day at 08:00 UTC
+- `'59 5 * * *'` → every day at 05:59 UTC
+- `'0 */6 * * *'` → every 6 hours
+- `'0 9 * * 1-5'` → weekdays at 09:00 UTC
+
+To change the schedule, edit the `cron` line and commit the file. That's it.
 
 ---
 
