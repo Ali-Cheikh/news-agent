@@ -1,5 +1,8 @@
 # Agent Suite
 
+Build your own AI-powered daily digest agent.  
+The included examples are just starting points — swap in your own RSS feeds and rules.
+
 A collection of independent AI-powered daily digest agents that fetch, deduplicate, rank, and deliver the most relevant stories from curated RSS feeds. Built with Node.js, Google Gemini, GitHub Actions, and optional email delivery through Resend.
 
 The entire system runs on free service tiers — no paid subscription is required.
@@ -30,7 +33,9 @@ All agents share a common engine (`core.js`). Individual agents are defined by s
 
 ---
 
-## Available Agents
+## Available Agents (Examples)
+
+These are pre-built examples to get you started. Replace their feeds and rules to make them your own.
 
 | Agent | File | Coverage |
 |-------|------|----------|
@@ -62,11 +67,14 @@ Each agent runs independently. You can enable one, several, or all of them. Crea
 agent-suite/
 ├── core.js                     # Shared engine: RSS fetching, deduplication, Gemini ranking, email
 │
-├── index.js                    # Tech agent configuration
-├── finance-agent.js            # Finance agent configuration
-├── gold-agent.js               # Gold & commodities agent configuration
-├── health-agent.js             # Health agent configuration
-├── edtech-agent.js             # EdTech agent configuration
+│
+├── index.js                    # Tech agent configuration (example/to edit making your own)
+│
+├── finance-agent.js            # Finance agent configuration (example)
+├── gold-agent.js               # Gold & commodities agent configuration (example)
+├── health-agent.js             # Health agent configuration (example)
+├── edtech-agent.js             # EdTech agent configuration (example)
+│
 │
 ├── package.json                # Dependencies
 ├── .github/
