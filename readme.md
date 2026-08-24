@@ -1,12 +1,12 @@
-# 🧠 Agent Suite — Zero‑Cost Daily AI Digests
+# 🧠 Agent Suite
 
 > **5 AI agents. 10+ RSS feeds each. 1 shared engine. $0 / month.**
 
-Never miss a beat. This repository runs **five independent AI‑powered digest agents** that fetch, deduplicate, and rank the day’s most important stories — all automatically, every day, for free using GitHub Actions and Google Gemini 2.5 Flash.
+This repository can runs **Every independent AI‑powered digest agents** that fetch, deduplicate, and rank the day’s most important stories — all automatically, every day, for free using GitHub Actions and Google Gemini 2.5 Flash.
 
 ---
 
-## ✨ What’s Inside
+## ✨ What’s Currently Inside
 
 | Agent | File | Covers |
 |-------|------|--------|
@@ -17,6 +17,7 @@ Never miss a beat. This repository runs **five independent AI‑powered digest a
 | 🎓 **EdTech** | `edtech-agent.js` | AI in education, LMS platforms, policy, research, certifications |
 
 Each agent runs independently — you can use one, two, or all five.
+Creating an agent is simply pointing it to where it should get the info.
 
 ---
 
