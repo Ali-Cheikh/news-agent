@@ -1,4 +1,6 @@
-# 👃 Nosey
+<img src="/assets/Tnosey-sniffing.png" align="right" />
+
+# Nosey
 
 > The AI that snoops your RSS feeds so you don't have to.
 
