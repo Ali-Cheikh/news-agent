@@ -1,6 +1,3 @@
-// core.js — shared engine, required by every agent
-// All logic lives here. Agents only define CONFIG.
-
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const Parser                 = require("rss-parser");
 const { Resend }             = require("resend");
@@ -14,7 +11,7 @@ function createAgent(CONFIG) {
   const resend = process.env.RESEND_API_KEY
     ? new Resend(process.env.RESEND_API_KEY) : null;
 
-  // ── 1. Fetch RSS — rich structured objects ──────────────────────
+  // RSS Fetch 
   async function fetchRSS() {
     const cutoff = Date.now() - (CONFIG.TIME_WINDOW_HOURS || 48) * 3600000;
     const items  = [];
@@ -39,7 +36,7 @@ function createAgent(CONFIG) {
     return items;
   }
 
-  // ── 2. Pre-filter — deterministic JS, no AI needed ─────────────
+  // Filter - presetting harcoded filter ;)
   function preFilter(items) {
     const kw     = (CONFIG.EXCLUDE_KEYWORDS || []).map(k => k.toLowerCase());
     const before = items.length;
@@ -50,7 +47,7 @@ function createAgent(CONFIG) {
     return out;
   }
 
-  // ── 3. Deduplicate — Jaccard similarity, sort by source count ──
+  // Dups remover and jokers ditector, sort by source count
   function wordSet(s) {
     return new Set(s.toLowerCase().replace(/[^a-z0-9 ]/g," ").split(/\s+/).filter(w=>w.length>3));
   }
@@ -72,11 +69,11 @@ function createAgent(CONFIG) {
           snippets: item.snippet ? [item.snippet] : [] });
       }
     }
-    // Most-covered stories first — key importance signal for Gemini
+    // Most-covered stories first
     return groups.sort((a, b) => b.sources.size - a.sources.size);
   }
 
-  // ── 4. Build prompt input — structured, richly labelled ────────
+  // prompt Builder (can be prettier)
   function buildPromptInput(groups) {
     return groups.map((g, i) => {
       const src = g.sources.size > 1
@@ -86,7 +83,7 @@ function createAgent(CONFIG) {
     }).join("\n\n");
   }
 
-  // ── 5. Analyze with Gemini — one call, explicit criteria ───────
+  // let GEM give us its opinion
   async function analyzeNews(groups, rawCount, date) {
     const MIN = CONFIG.MIN_STORIES || 8;
     const MAX = CONFIG.MAX_STORIES || 12;
@@ -126,7 +123,7 @@ function createAgent(CONFIG) {
     }
   }
 
-  // ── 6. Build HTML email ─────────────────────────────────────────
+  // HTML Email Builder
   function buildHTML(stories, date) {
     const top = stories[0];
     const tc  = CONFIG.THEME_COLOR || "#8892a4";
@@ -173,7 +170,7 @@ function createAgent(CONFIG) {
       '</div></body></html>';
   }
 
-  // ── 7. Build Markdown — with clickable links ────────────────────
+  // Markdown Files Builder
   function buildMarkdown(stories, date, slug) {
     const top  = stories[0];
     const rows = stories.map((s, i) =>
@@ -191,7 +188,7 @@ function createAgent(CONFIG) {
       rows + "\n";
   }
 
-  // ── 8. Update archive index — human dates + story count ────────
+  // pretty styling
   function updateIndex(date, slug, count) {
     const dir = CONFIG.DIGEST_DIR || "digests";
     const p   = path.join(dir, "README.md");
@@ -201,7 +198,7 @@ function createAgent(CONFIG) {
       fs.writeFileSync(p, e + "- [" + date + "](./" + slug + ".md) — " + count + " stories\n");
   }
 
-  // ── Main run ────────────────────────────────────────────────────
+  // the supreme exe 
   async function run() {
     const date = new Date().toLocaleDateString("en-US",
       { weekday:"long", month:"long", day:"numeric", year:"numeric" });

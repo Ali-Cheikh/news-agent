@@ -1,4 +1,3 @@
-
 <img src="/assets/Tnosey-foundit.png" align="left" style="margin-top=10px" />
 
 ### Nosey is the nosy AI that pokes into your RSS feeds and serves up a daily digest.  
@@ -168,6 +167,71 @@ module.exports = CONFIG;
 - **To change output size:** adjust `MIN_STORIES` and `MAX_STORIES`.
 
 **Never edit `core.js`** – that's the engine; you just configure the agents.
+
+---
+
+## Customizing Output: Email & Markdown
+
+Nosey gives you two finished products: a **Markdown file** (saved in your repo) and an **HTML email** (sent via Resend). Here’s how they’re structured and how to make them yours.
+
+### 📧 Email Design
+
+By default, Nosey sends a dark‑mode, responsive HTML email. You can tweak its look without touching the core engine:
+
+| Config Key | What it controls |
+|------------|-------------------|
+| `THEME_COLOR` | The accent color used for borders, category badges, and the "TOP STORY" label. Set it to any hex (e.g., `#ff6b6b` for red, `#4ecdc4` for teal). |
+| `EMAIL_FROM` | The sender name and address shown in the inbox. Keep it on your verified Resend domain. |
+| `AGENT_EMOJI` | Appears in the email subject line and header. |
+
+**The email structure (built automatically):**
+- **Top story block** – a highlighted card with the #1 story, including headline, summary, and a "why it matters" blurb.
+- **Ranked table** – columns for Rank, Story (with link), Category, Source outlet, and "Why it matters".
+- **Source count** – if a story appears in multiple RSS feeds, Nosey shows `2 outlets` or `3 outlets` to signal broad coverage.
+
+**Want a complete redesign?**  
+For full control (adding a logo, changing fonts, altering the layout, or switching to a light theme), edit the `buildHTML()` function inside `core.js`. It's a standalone function – you can swap the entire HTML template there without breaking the rest of the engine.
+
+**Example quick tweak in `core.js`:**
+```javascript
+// Inside buildHTML(), change the background color:
+<body style="background:#ffffff; margin:0; ...">  // switch to white
+// Or add an <img> tag for your logo at the top.
+```
+
+---
+
+### 📄 Markdown Digest Structure
+
+Every run saves a `.md` file inside your agent’s `DIGEST_DIR` (e.g., `digests/tech/2026-08-24.md`). The structure is designed for readability and easy browsing:
+
+**1. Header & Metadata**
+```markdown
+# 🌐 Daily Tech Digest — Tuesday, August 24, 2026
+> 12 stories · 2026-08-24
+```
+The emoji and name come from `AGENT_EMOJI` and `AGENT_NAME` in your config.
+
+**2. Top Story (highlighted)**
+```markdown
+## 🔥 Top Story
+
+**[Apple unveils M4 chip with 50% faster NPU](https://...)**  
+The new chip delivers 50% faster neural processing, debuting in the MacBook Pro lineup.  
+💡 Makes on-device AI significantly faster for developers.
+```
+
+**3. Full Table (all ranked stories)**
+| # | Headline | Summary | Category | Sources | Why It Matters |
+|---|----------|---------|----------|---------|----------------|
+| 1 | [link] | ... | AI | The Verge | Makes ... |
+| 2 | [link] | ... | Gadgets | 3 outlets | Gives ... |
+
+- **Sources column** – shows the outlet name (e.g., *TechCrunch*) if only one feed covers it, or `2 outlets` / `3 outlets` if multiple sources reported the same story.
+- **Category column** – Gemini picks the best match from your `CATEGORIES` pipe‑separated list (e.g., `AI|Gadgets|Software`).
+
+**Want a different Markdown layout?**  
+Edit the `buildMarkdown()` function in `core.js`. You can reorder columns, switch to bullet points instead of a table, or add extra sections. The function returns a plain string, so you have full freedom.
 
 ---
 

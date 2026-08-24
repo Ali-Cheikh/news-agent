@@ -1,6 +1,3 @@
-// index.js — Consumer Tech Digest
-// Run: node index.js
-
 require("dotenv").config();
 const { createAgent } = require("./core");
 
