@@ -1,3 +1,7 @@
+<img src="/assets/Tnosey-foundit.png" align="right" />
+
+</br>
+
 # Setup Guide — Nosey
 
 Nosey is the nosy AI that pokes into your RSS feeds and serves up a daily digest.  
