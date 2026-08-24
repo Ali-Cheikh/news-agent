@@ -1,7 +1,7 @@
 <img src="/assets/Tnosey-confused.png" align="right" />
 
 # How to Activate Nosey
-This doc holds how you configure **Nosey**
+This Support doc holds how you configure **Nosey**
 Step by step through setting up and running your own digest agents — _locally or on GitHub Actions_.
 All you need is just a bit of curiosity.
 
