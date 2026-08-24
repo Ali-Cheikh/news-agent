@@ -8,12 +8,14 @@ Nosey is a lightweight, zero‑cost framework that turns your curated RSS feeds 
 
 Why *Nosey*? Because it pokes into every feed, sniffs out duplicates, and digs up the stories that actually matter. The included agents are just examples — swap in your own feeds and rules, and Nosey adapts instantly.
 
+---
+
 ![clones](https://raw.githubusercontent.com/Ali-Cheikh/Ali-Cheikh/traffic/traffic-news-agent/clones.svg)
 ![clones per week](https://raw.githubusercontent.com/Ali-Cheikh/Ali-Cheikh/traffic/traffic-news-agent/clones_per_week.svg)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-2088FF?logo=github-actions)](https://github.com/features/actions)
 [![Gemini](https://img.shields.io/badge/Gemini-2.5%20Flash-8E75B2?logo=google)](https://ai.google.dev/)
 
----
+Before we you start if you want to set up Nosey for yourself check [Support.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/SUPPORT.md) and [Setup.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/setup.md)
 
 ## Overview
 
@@ -90,7 +92,7 @@ nosey/
 
 ## Quick Start
 > [!NOTE]
-> *You might want to check [#How-to-use](https://github.com/Ali-Cheikh/nosey-agent/blob/main/SUPPORT.md) and [#Setup.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/setup.md)*
+> *You might want to check [Support.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/SUPPORT.md) and [Setup.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/setup.md)*
 1. **Clone or fork** this repository.
 2. **Get a Gemini API key** from [Google AI Studio](https://aistudio.google.com/) (free tier works).
 3. **Add secrets** in your GitHub repo:
