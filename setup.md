@@ -1,4 +1,4 @@
-<img src="/assets/Tnosey-foundit.png" align="right" />
+<img src="/assets/Tnosey-foundit.png" align="left" />
 
 </br>
 
