@@ -1,10 +1,15 @@
+
+
+<img src="/assets/Tnosey-confused.png" align="right" />
+
 # How to Activate Nosey
+This doc holds how you configure Nosey
+Step by step through setting up and running your own digest agents — locally or on GitHub Actions.
+all you need is Just a bit of curiosity.
 
-Nosey is your nosy little AI that digs through RSS feeds so you don't have to.  
-This guide walks you through setting up and running your own digest agents — locally or on GitHub Actions.  
-No advanced coding required — just a bit of curiosity.
+You'll point your nosey agent at a few RSS feeds, tell it which words to ignore, give it a ranked list of what matters, and it will fetch, deduplicate, and deliver a tidy digest. Want a specific accent color in the email? Set it. Only care about the last 48 hours? Done. Prefer 10 to 15 stories per day? That's just a couple of fields.
 
----
+All of it lives in one simple config object inside each agent file. Tweak a few values and your nosey agent is ready to go.
 
 ## Prerequisites
 
