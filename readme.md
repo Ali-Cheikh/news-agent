@@ -90,7 +90,7 @@ nosey/
 
 ## Quick Start
 > [!NOTE]
-> *You might want to check [#How-to-use](https://github.com/Ali-Cheikh/nosey-agent/blob/main/how-to-use.md) and [#Setup.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/setup.md)*
+> *You might want to check [#How-to-use](https://github.com/Ali-Cheikh/nosey-agent/blob/main/SUPPORT.md) and [#Setup.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/setup.md)*
 1. **Clone or fork** this repository.
 2. **Get a Gemini API key** from [Google AI Studio](https://aistudio.google.com/) (free tier works).
 3. **Add secrets** in your GitHub repo:
