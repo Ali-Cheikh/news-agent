@@ -1,26 +1,27 @@
-# How to Activate nosey
+# How to Activate Nosey
 
-This guide walks you through setting up and running your own AI-powered daily digest agents, whether locally or on GitHub Actions.  
-You'll learn how to install, configure, and customize everything — no advanced coding required.
+Nosey is your nosy little AI that digs through RSS feeds so you don't have to.  
+This guide walks you through setting up and running your own digest agents — locally or on GitHub Actions.  
+No advanced coding required — just a bit of curiosity.
 
 ---
 
 ## Prerequisites
 
-- **Node.js** (version 18 or higher) if you want to test locally.
-- A **GitHub account** (for running on GitHub Actions).
-- A **Gemini API key** – get one free at [Google AI Studio](https://aistudio.google.com/).
-- (Optional) A **Resend API key** for email delivery – sign up at [Resend](https://resend.com/).
+- **Node.js** (v18+) – only if testing locally.
+- A **GitHub account** (for Actions).
+- A **Gemini API key** – free from [Google AI Studio](https://aistudio.google.com/).
+- (Optional) A **Resend API key** for email – sign up at [Resend](https://resend.com/).
 
 ---
 
 ## Quick Start (Local)
 
-1. **Clone the repository** to your machine:
+1. **Clone the repo** and move in:
 
    ```bash
-   git clone https://github.com/your-username/agent-suite.git
-   cd agent-suite
+   git clone https://github.com/your-username/nosey.git
+   cd nosey
    ```
 
 2. **Install dependencies**:
@@ -29,79 +30,73 @@ You'll learn how to install, configure, and customize everything — no advanced
    npm install
    ```
 
-3. **Create a `.env` file** in the project root with your API key:
+3. **Create a `.env` file** with your Gemini key:
 
    ```env
    GEMINI_API_KEY=your_gemini_api_key_here
    ```
 
-   If you plan to send emails, also add:
+   For email, also add:
 
    ```env
-   RESEND_API_KEY=your_resend_api_key_here
+   RESEND_API_KEY=your_resend_key
    EMAIL_TO=you@example.com
    ```
 
 4. **Run an agent**:
 
    ```bash
-   node index.js            # Tech agent
-   # or
-   node finance-agent.js    # Finance agent
+   node index.js            # Tech
+   node finance-agent.js    # Finance
    # etc.
    ```
 
-   The digest will be saved as a Markdown file inside the `digests/` folder.  
-   Console output shows each step (fetching, filtering, ranking, writing).
+   The digest saves as a Markdown file in `digests/`. Console logs show every step — Nosey is transparent about its snooping.
 
 ---
 
 ## Quick Start (GitHub Actions)
 
-1. **Fork or create a new repository** from this template (or upload the files).
+1. **Fork or create a new repo** from this template (or upload the files).
 
-2. **Add secrets** to your repository:
-   - Go to **Settings → Secrets and variables → Actions → New repository secret**.
-   - Add:
-     - `GEMINI_API_KEY` (required)
-     - `RESEND_API_KEY` and `EMAIL_TO` (optional)
+2. **Add secrets** in your repository:
+   - **Settings → Secrets and variables → Actions → New repository secret**
+   - Required: `GEMINI_API_KEY`
+   - Optional: `RESEND_API_KEY`, `EMAIL_TO`
 
 3. **Run the workflow manually**:
-   - Open the **Actions** tab.
-   - Select the workflow (**Daily Tech Digest** by default).
-   - Click **Run workflow**.
+   - Go to **Actions** → select **Daily Tech Digest** → **Run workflow**.
 
 4. **Check the output**:
-   - After about a minute, a new folder `digests/tech/` will appear with today’s digest as a `.md` file.
-   - The workflow also commits the digest back to the repository.
+   - After ~1 minute, a new `digests/tech/` folder appears with today's `.md` file.
+   - The workflow commits the digest back to the repo.
 
-The workflow is scheduled to run daily at 08:00 UTC. You can change the schedule later.
+The workflow runs daily at 08:00 UTC by default — you can change that later.
 
 ---
 
 ## Configuration Deep Dive
 
-All agents are defined by a `CONFIG` object inside their respective `.js` file.  
-The shared engine (`core.js`) does **not** need to be modified for normal use.
+Every agent is defined by a `CONFIG` object in its `.js` file.  
+The shared engine (`core.js`) is off‑limits — don't touch it unless you know what you're doing.
 
 ### Most Common Fields
 
 | Field | Description | Example |
 |-------|-------------|---------|
-| `FEEDS` | Array of RSS feed URLs to fetch | `['https://example.com/rss', 'https://anotherexample.com/feed']` |
-| `EXCLUDE_KEYWORDS` | Words that cause an article to be dropped (case‑insensitive) | `['sponsored', 'advertorial']` |
+| `FEEDS` | Array of RSS feed URLs | `['https://example.com/rss']` |
+| `EXCLUDE_KEYWORDS` | Words that drop an article (case‑insensitive) | `['sponsored', 'advertorial']` |
 | `RANK_CRITERIA` | Ordered list of factors Gemini uses to rank stories | See below |
-| `CATEGORIES` | Pipe‑separated list for labeling stories | `'AI\|Gadgets\|Software'` |
+| `CATEGORIES` | Pipe‑separated labels for stories | `'AI\|Gadgets\|Software'` |
 | `THEME_COLOR` | Accent color for HTML email | `'#22d3ee'` |
 | `TIME_WINDOW_HOURS` | Only consider articles from the last N hours | `48` |
-| `MIN_STORIES` / `MAX_STORIES` | How many stories the digest should contain | `10` / `15` |
+| `MIN_STORIES` / `MAX_STORIES` | Bounds for digest size | `10` / `15` |
 
 ### Understanding `RANK_CRITERIA`
 
-`RANK_CRITERIA` is a list of instructions sent to Gemini.  
-Order matters — put the most important criteria first.
+This is a list of instructions sent to Gemini. Order matters — put the most important criteria first.
 
-**Example from the Tech agent:**
+**Tech agent example:**
 
 ```javascript
 RANK_CRITERIA: [
@@ -113,7 +108,7 @@ RANK_CRITERIA: [
 ],
 ```
 
-You can change these lines to match your interests. For a finance agent, you might use:
+For a finance agent, you might use:
 
 ```javascript
 RANK_CRITERIA: [
@@ -127,7 +122,7 @@ RANK_CRITERIA: [
 
 ### `INCLUDE_RULES` and `EXCLUDE_RULES`
 
-These are extra prompt instructions that tell Gemini what to include or avoid.
+Extra prompt instructions that tell Gemini what to keep or avoid.
 
 ```javascript
 INCLUDE_RULES: [
@@ -145,7 +140,7 @@ EXCLUDE_RULES: [
 
 ## Creating Your Own Agent
 
-You don’t have to use the five included agents. You can create as many as you want.
+You don't have to stick with the five provided agents — Nosey loves new noses.
 
 1. **Copy an existing agent file** (e.g. `index.js`):
 
@@ -155,8 +150,8 @@ You don’t have to use the five included agents. You can create as many as you 
 
 2. **Edit the new file** (`sports-agent.js`) and change the `CONFIG`:
    - Update `AGENT_NAME`, `AGENT_EMOJI`, `DIGEST_DIR` (e.g. `digests/sports`).
-   - Replace `FEEDS` with your chosen RSS feeds.
-   - Adjust `RANK_CRITERIA`, `CATEGORIES`, and other fields.
+   - Replace `FEEDS` with your preferred RSS feeds.
+   - Tweak `RANK_CRITERIA`, `CATEGORIES`, etc.
 
 3. **Run it locally** to test:
 
@@ -177,25 +172,25 @@ You don’t have to use the five included agents. You can create as many as you 
          EMAIL_TO: ${{ secrets.EMAIL_TO }}
      ```
 
-5. **Commit and push**. The new agent will now run on schedule.
+5. **Commit and push** — your new agent will now run on schedule.
 
 ---
 
 ## Email Setup (Optional)
 
-To receive the digest as an HTML email:
+To receive digests as HTML emails:
 
 1. Sign up at [Resend](https://resend.com/) and verify a domain.
 2. Copy your Resend API key.
 3. In the agent config, set `EMAIL_FROM` to an address from your verified domain:
 
    ```javascript
-   EMAIL_FROM: 'Your Digest <digest@yourdomain.com>'
+   EMAIL_FROM: 'Nosey Digest <digest@yourdomain.com>'
    ```
 
-4. Add the `RESEND_API_KEY` and `EMAIL_TO` secrets to GitHub (or include them in `.env` for local testing).
+4. Add `RESEND_API_KEY` and `EMAIL_TO` secrets to GitHub (or `.env` for local).
 
-If you skip email configuration, agents will still save Markdown digests in the repository.
+If you skip email, Nosey still saves Markdown digests in the repository — no worries.
 
 ---
 
@@ -203,16 +198,16 @@ If you skip email configuration, agents will still save Markdown digests in the 
 
 | Issue | Likely cause | Fix |
 |-------|--------------|-----|
-| `node` command not found | Node.js not installed | Install Node.js from [nodejs.org](https://nodejs.org/) |
-| `Error: 403` or `429` from Gemini | Invalid API key or quota exceeded | Check your key in [AI Studio](https://aistudio.google.com/) |
-| No articles fetched | RSS feed URL is broken or down | Test the feed URL in a browser |
-| Email not sent | Resend key missing or `EMAIL_FROM` not verified | Verify your domain in Resend and re‑check secrets |
-| GitHub Actions workflow fails at commit | Missing `contents: write` permission | Ensure the workflow includes `permissions: contents: write` |
+| `node` not found | Node.js not installed | Install from [nodejs.org](https://nodejs.org/) |
+| `403` / `429` from Gemini | Invalid key or quota exceeded | Check key in [AI Studio](https://aistudio.google.com/) |
+| No articles fetched | Feed URL broken or down | Test the URL in a browser |
+| Email not sent | Resend key missing or `EMAIL_FROM` unverified | Verify domain in Resend and re‑check secrets |
+| GitHub Actions commit fails | Missing `contents: write` permission | Ensure workflow includes `permissions: contents: write` |
 
 ---
 
 ## Next Steps
 
-- Read the [main README](../README.md) for a high‑level overview.
-- Explore the `CONFIG` objects inside each agent file to see how they are set up.
-- Star the repository if you find it useful!
+- Read the [main README](../README.md) for the big picture.
+- Explore the `CONFIG` objects inside each agent file to see how they're set up.
+- Star the repo if Nosey made you smile — and share your custom agents!

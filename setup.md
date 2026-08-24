@@ -1,14 +1,14 @@
+# Setup Guide — Nosey
 
-# Setup Guide — Agent Suite
-
-This guide shows you exactly how to set up, customize, and run the digest agents.  
-Everything runs for free on GitHub Actions and the Gemini free tier.
+Nosey is the nosy AI that pokes into your RSS feeds and serves up a daily digest.  
+This guide shows exactly how to set it up, customize it, and run it — all for free.
 
 ---
-**Workflow is as followed**
-```Js
+
+**Workflow (how Nosey snoops):**
+```text
 +------------------+     +------------------+     +------------------+
-|   RSS Feeds      | --> |  Fetch & Dedup   | --> |  Gemini Ranking  |   <-- # uncolored are github actions
+|   RSS Feeds      | --> |  Fetch & Dedup   | --> |  Gemini Ranking  |   <-- GitHub Actions
 +------------------+     +------------------+     +------------------+
                                                       |
                     +---------------------------------+---------------------------------+
@@ -19,49 +19,53 @@ Everything runs for free on GitHub Actions and the Gemini free tier.
              | Digest      |                 | (Resend)    |                 | Index       |
              +-------------+                 +-------------+                 +-------------+
 ```
+
 ---
 
 ## Prerequisites
 
 - GitHub account (free)
 - Gemini API key – get it at [Google AI Studio](https://aistudio.google.com/)
-- (Optional) Resend API key for email delivery – sign up at [Resend](https://resend.com/)
+- (Optional) Resend API key for email – sign up at [Resend](https://resend.com/)
 
 ---
 
 ## Quick Start
 
 1. **Fork or clone** this repository to your GitHub account.
+
 2. **Add secrets** in your repository:
    - Go to **Settings → Secrets and variables → Actions → New repository secret**
    - Add:
      - `GEMINI_API_KEY` (required)
-     - `RESEND_API_KEY` and `EMAIL_TO` (optional, for email)
+     - `RESEND_API_KEY` and `EMAIL_TO` (optional)
+
 3. **Run the workflow manually**:
    - Open the **Actions** tab
    - Select **Daily Tech Digest**
    - Click **Run workflow**
-4. **Check the result**:
-   - After ~1 minute, a new folder `digests/tech/` will appear with a Markdown file named after today’s date.
 
-That’s it. The agent will now also run every day at 08:00 UTC.
+4. **Check the result**:
+   - After ~1 minute, a new folder `digests/tech/` appears with a Markdown file named after today’s date.
+
+That’s it. Nosey will now run daily at 08:00 UTC.
 
 ---
 
 ## Workflow File Example
 
-This is the full content of `.github/workflows/daily-digest.yml` (currently runs only the Tech agent).
+Full content of `.github/workflows/daily-digest.yml` (currently runs only the Tech agent):
 
 ```yaml
 name: Daily Tech Digest
 
 on:
   schedule:
-    - cron: '0 8 * * *'          # Runs daily at 08:00 UTC
-  workflow_dispatch:               # Allows manual trigger
+    - cron: '0 8 * * *'
+  workflow_dispatch:
 
 permissions:
-  contents: write                  # Required to commit digests back
+  contents: write
 
 jobs:
   digest:
@@ -74,7 +78,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Run digest
-        run: node index.js         # Change this line to run another agent
+        run: node index.js         # change to another agent if you want
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -90,16 +94,14 @@ jobs:
           )
 ```
 
-To run a different agent, replace `node index.js` with `node finance-agent.js`, `node gold-agent.js`, etc.
-
-To run multiple agents, add another step (copy the `Run digest` step) and change the `run:` line.
+To run a different agent, replace `node index.js` with `node finance-agent.js`, etc.  
+To run multiple agents, duplicate the `Run digest` step.
 
 ---
 
-## index.js Config Example
+## `index.js` Config Example
 
-Open `index.js` (or any agent file) and you’ll see a `CONFIG` object like the one below.  
-Only edit the fields you need.
+Open `index.js` (or any agent file) – you'll see a `CONFIG` object like this:
 
 ```javascript
 const CONFIG = {
@@ -118,7 +120,7 @@ const CONFIG = {
   MIN_STORIES: 10,
   MAX_STORIES: 15,
 
-  EMAIL_FROM: 'Tech Digest <digest@yourdomain.com>',   // optional, for Resend
+  EMAIL_FROM: 'Nosey Tech <digest@yourdomain.com>',   // optional
 
   IMPACT_VERBS: 'Lets / Makes / Gives / Cuts',
 
@@ -159,12 +161,12 @@ const CONFIG = {
 module.exports = CONFIG;
 ```
 
-- **To change sources:** edit the `FEEDS` array.
+- **To change sources:** edit `FEEDS`.
 - **To change ranking:** edit `RANK_CRITERIA`.
-- **To filter out topics:** add words to `EXCLUDE_KEYWORDS`.
+- **To filter topics:** add words to `EXCLUDE_KEYWORDS`.
 - **To change output size:** adjust `MIN_STORIES` and `MAX_STORIES`.
 
-**Never edit `core.js`** – it is the shared engine for all agents.
+**Never edit `core.js`** – that's the engine; you just configure the agents.
 
 ---
 
@@ -181,7 +183,7 @@ In the workflow file, add another step for each agent. For example:
     EMAIL_TO: ${{ secrets.EMAIL_TO }}
 ```
 
-Repeat the same pattern for `gold-agent.js`, `health-agent.js`, or any custom agent file.
+Repeat for `gold-agent.js`, `health-agent.js`, or any custom agent.
 
 ---
 
@@ -193,7 +195,7 @@ echo "GEMINI_API_KEY=your_key_here" > .env
 node index.js
 ```
 
-The generated Markdown file will appear in `digests/tech/`.
+The Markdown file will appear in `digests/tech/`.
 
 ---
 
@@ -201,13 +203,13 @@ The generated Markdown file will appear in `digests/tech/`.
 
 | Problem | Fix |
 |---------|-----|
-| Git push fails | Ensure the workflow has `permissions: contents: write` |
-| Gemini API error | Check the secret value and your quota |
-| No articles fetched | Test the RSS URL in a browser |
+| Git push fails | Ensure workflow has `permissions: contents: write` |
+| Gemini API error | Check secret and quota |
+| No articles fetched | Test RSS URL in browser |
 | No email received | Verify Resend domain and `EMAIL_TO` / `EMAIL_FROM` |
 
 ---
 
 ## Cost: $0 / month
 
-Gemini, GitHub Actions, and Resend free tiers are enough for daily runs of all agents.
+Gemini, GitHub Actions, and Resend free tiers cover daily runs of all agents. Nosey doesn't cost a penny.
