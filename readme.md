@@ -8,8 +8,8 @@ Nosey is a lightweight, zero‑cost framework that turns your curated RSS feeds 
 
 Why *Nosey*? Because it pokes into every feed, sniffs out duplicates, and digs up the stories that actually matter. The included agents are just examples — swap in your own feeds and rules, and Nosey adapts instantly.
 
-![clones](https://raw.githubusercontent.com/Ali-Cheikh/Ali-Cheikh/traffic/traffic-nosey-agent/clones.svg)
-![clones per week](https://raw.githubusercontent.com/Ali-Cheikh/Ali-Cheikh/traffic/traffic-nosey-agent/clones_per_week.svg)
+![clones](https://raw.githubusercontent.com/Ali-Cheikh/Ali-Cheikh/traffic/traffic-news-agent/clones.svg)
+![clones per week](https://raw.githubusercontent.com/Ali-Cheikh/Ali-Cheikh/traffic/traffic-news-agent/clones_per_week.svg)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Automated-2088FF?logo=github-actions)](https://github.com/features/actions)
 [![Gemini](https://img.shields.io/badge/Gemini-2.5%20Flash-8E75B2?logo=google)](https://ai.google.dev/)
 
@@ -86,6 +86,8 @@ nosey/
 
 ---
 
+<img src="/assets/Tnosey-sleeping.png" align="right" />
+
 ## Quick Start
 > [!NOTE]
 > *You might want to check [#How-to-use](https://github.com/Ali-Cheikh/nosey-agent/blob/main/how-to-use.md) and [#Setup.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/setup.md)*
@@ -154,18 +156,17 @@ No email? No problem — Nosey still saves Markdown digests.
 
 Edit `.github/workflows/daily-digest.yml` and add a step for each agent. Example:
 
+<img src="/assets/Tnosey-tapping.png" align="right" />
+
 ```yaml
 - name: Run Finance agent
   env:
     GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
   run: node finance-agent.js
 ```
-
 Repeat for `gold-agent.js`, `health-agent.js`, `edtech-agent.js`, etc.
 
----
-
-## Local Testing
+**You can also locally test it by running the following**:
 
 ```bash
 npm install
