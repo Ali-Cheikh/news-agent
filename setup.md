@@ -1,27 +1,24 @@
-<img src="/assets/Tnosey-foundit.png" align="left" />
 
-</br>
+<img src="/assets/Tnosey-foundit.png" align="left" style="margin-top=10px" />
 
-# Setup Guide — Nosey
-
-Nosey is the nosy AI that pokes into your RSS feeds and serves up a daily digest.  
+### Nosey is the nosy AI that pokes into your RSS feeds and serves up a daily digest.  
 This guide shows exactly how to set it up, customize it, and run it — all for free.
 
 ---
 
 **Workflow (how Nosey snoops):**
-```text
-+------------------+     +------------------+     +------------------+
-|   RSS Feeds      | --> |  Fetch & Dedup   | --> |  Gemini Ranking  |   <-- GitHub Actions
-+------------------+     +------------------+     +------------------+
-                                                      |
-                    +---------------------------------+---------------------------------+
-                    |                                 |                                 |
-                    v                                 v                                 v
-             +-------------+                 +-------------+                 +-------------+
-             | Markdown    |                 | HTML Email  |                 | Archive     |
-             | Digest      |                 | (Resend)    |                 | Index       |
-             +-------------+                 +-------------+                 +-------------+
+```
+   +-------------+    +--------------+    +--------------+
+   |  RSS Feeds  | -> | Fetch & Dedup| -> |  Gemini Rank |
+   +-------------+    +--------------+    +--------------+
+                                               |
+                +--------------+---------------+
+                |              |               |
+                v              v               v
+         +------------+ +------------+ +------------+
+         |  Markdown  | | HTML Email | |  Archive   |
+         |  Digest    | |  (Resend)  | |  Index     |
+         +------------+ +------------+ +------------+
 ```
 
 ---
