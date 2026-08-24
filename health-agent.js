@@ -1,6 +1,3 @@
-// health-agent.js — Medicare & Healthcare Brief
-// Run: node health-agent.js
-
 require("dotenv").config();
 const { createAgent } = require("./core");
 

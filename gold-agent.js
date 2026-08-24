@@ -1,6 +1,3 @@
-// gold-agent.js — Gold & Minerals Trading Brief
-// Run: node gold-agent.js
-
 require("dotenv").config();
 const { createAgent } = require("./core");
 

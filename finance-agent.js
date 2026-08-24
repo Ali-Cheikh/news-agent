@@ -1,6 +1,3 @@
-// finance-agent.js — Bloomberg-style Finance Brief
-// Run: node finance-agent.js
-
 require("dotenv").config();
 const { createAgent } = require("./core");
 

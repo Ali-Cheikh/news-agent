@@ -1,6 +1,3 @@
-// edtech-agent.js — EdTech & AI Education Brief
-// Run: node edtech-agent.js
-
 require("dotenv").config();
 const { createAgent } = require("./core");
 
