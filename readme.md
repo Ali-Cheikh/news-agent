@@ -26,7 +26,8 @@ Nosey is a collection of independent agents. Each one:
 
 All agents share a common engine (`core.js`). Individual agents are defined by simple configuration files — no advanced coding required.
 
-> **Important:** You are **not** required to use the five default agents. They are working examples. To create your own Nosey, just open any agent file (e.g. `index.js`), replace the `FEEDS` array with your favourite RSS URLs, and let Nosey do the rest — the LLM handles everything automatically.
+> [!IMPORTANT]
+> You are **not** required to use the five default agents. They are working examples. To create your own Nosey, just open any agent file (e.g. `index.js`), replace the `FEEDS` array with your favourite RSS URLs, and let Nosey do the rest — the LLM handles everything automatically.
 
 ---
 
@@ -84,7 +85,8 @@ nosey/
 ---
 
 ## Quick Start
-
+> [!NOTE]
+> *You might want to check [#How-to-use](https://github.com/Ali-Cheikh/nosey-agent/blob/main/how-to-use.md) and [#Setup.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/setup.md)*
 1. **Clone or fork** this repository.
 2. **Get a Gemini API key** from [Google AI Studio](https://aistudio.google.com/) (free tier works).
 3. **Add secrets** in your GitHub repo:
