@@ -3,9 +3,12 @@
 
 This guide shows you exactly how to set up, customize, and run the digest agents.  
 Everything runs for free on GitHub Actions and the Gemini free tier.
+
+---
+**Workflow is as followed**
 ```Js
 +------------------+     +------------------+     +------------------+
-|   RSS Feeds      | --> |  Fetch & Dedup   | --> |  Gemini Ranking  |   <== # uncolored are github actions
+|   RSS Feeds      | --> |  Fetch & Dedup   | --> |  Gemini Ranking  |   <-- # uncolored are github actions
 +------------------+     +------------------+     +------------------+
                                                       |
                     +---------------------------------+---------------------------------+
