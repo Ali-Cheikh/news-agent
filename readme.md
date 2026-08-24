@@ -1,6 +1,9 @@
 # 🧠 Agent Suite
-
-> **5 AI agents. 10+ RSS feeds each. 1 shared engine. $0 / month.**
+![total views](https://raw.githubusercontent.com/Ali-Cheikh/news-agent/traffic/total_views.svg)
+![total views per week](https://raw.githubusercontent.com/Ali-Cheikh/news-agent/traffic/total_views_per_week.svg)
+![total clones](https://raw.githubusercontent.com/Ali-Cheikh/news-agent/traffic/total_clones.svg)
+![total clones per week](https://raw.githubusercontent.com/Ali-Cheikh/news-agent/traffic/total_clones_per_week.svg)
+> **Build AI agents. Available : 10+ RSS feeds each. 1 shared engine. $0 / month.**
 
 This repository can runs **Every independent AI‑powered digest agents** that fetch, deduplicate, and rank the day’s most important stories — all automatically, every day, for free using GitHub Actions and Google Gemini 2.5 Flash.
 
