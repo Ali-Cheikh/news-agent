@@ -197,8 +197,8 @@ PRs are welcome. Fork, branch, change, open a pull request. Bug reports and new 
 ---
 
 ## License
-
-MIT – do whatever you want with it.
+ [LICENCE.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/LICENCE.md)* read 
+[Support.md](https://github.com/Ali-Cheikh/nosey-agent/blob/main/SUPPORT.md) thoroughly – as long as its personal or educational do whatever you want with it.
 
 ---
 
