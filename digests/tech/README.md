@@ -25,3 +25,4 @@
 - [Tuesday, August 25, 2026](./2026-08-25.md) — 15 stories
 - [Wednesday, August 26, 2026](./2026-08-26.md) — 15 stories
 - [Thursday, August 27, 2026](./2026-08-27.md) — 15 stories
+- [Friday, August 28, 2026](./2026-08-28.md) — 15 stories
