@@ -31,7 +31,7 @@ Nosey is a collection of independent agents. Each one:
 All agents share a common engine (`core.js`). Individual agents are defined by simple configuration files — no advanced coding required.
 
 > [!IMPORTANT]
-> You are **not** required to use the five default agents. They are working examples. To create your own Nosey, just open any agent file (e.g. `index.js`), replace the `FEEDS` array with your favourite RSS URLs, and let Nosey do the rest — the LLM handles everything automatically.
+> You are **not** required to use the five default agents. They are working examples. To create your own Nosey, just open any agent file (e.g. `index.js`), replace the `FEEDS` array with your favourite RSS URLs(targeted news url), and let Nosey do the rest(webscrape the heck out of it) — the LLM handles everything automatically.
 
 ---
 
